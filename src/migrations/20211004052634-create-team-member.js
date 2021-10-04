@@ -1,27 +1,33 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Tournaments", {
+    await queryInterface.createTable("TeamMembers", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      title: {
+      userId: {
+        type: Sequelize.NUMBER,
+        references: {
+          model: "User",
+          key: "id",
+        },
+      },
+      teamId: {
+        type: Sequelize.NUMBER,
+        references: {
+          model: "Team",
+          key: "id",
+        },
+      },
+      roles: {
+        type: Sequelize.ENUM,
+        values: ["CAPTAIN", "MEMBER", "STANDIN"],
+      },
+      ingameId: {
         type: Sequelize.STRING,
-      },
-      startDate: {
-        type: Sequelize.DATE,
-      },
-      endDate: {
-        type: Sequelize.DATE,
-      },
-      teamCount: {
-        type: Sequelize.NUMBER,
-      },
-      slot: {
-        type: Sequelize.NUMBER,
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +40,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Tournaments");
+    await queryInterface.dropTable("TeamMembers");
   },
 };
