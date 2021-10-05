@@ -1,1 +1,4 @@
 node_modules
+dev.db
+test.db
+prod.db
