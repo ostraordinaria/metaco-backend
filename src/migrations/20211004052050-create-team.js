@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       tournamentId: {
-        type: Sequelize.STRING,
+        type: Sequelize.NUMBER,
         reference: {
           model: "Tournament",
           key: "id",
